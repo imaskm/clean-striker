@@ -31,7 +31,6 @@ class testUtility(unittest.TestCase):
         players= tuple(sorted(self.players,key=lambda x: x.score))
         self.assertEqual((True,players[-1].name),utility.checkWinner(players))
 
-
     def test_checkWinnerIfCoinNotAvailableGreaterThanFive(self):
 
         self.players[0].score = 5
@@ -60,7 +59,6 @@ class testUtility(unittest.TestCase):
         self.coins.numberOfRedCoins= 1
         self.coins.numberOfBlackCoins= 2
         self.players.sort(key=lambda x: x.score)
-
         self.assertEqual((True,self.players[-1].name),utility.checkResult(self.carrom))
     
     def test_checkResultTrueAferCoinExhaustion(self):
@@ -70,7 +68,6 @@ class testUtility(unittest.TestCase):
         self.coins.numberOfRedCoins= 0
         self.coins.numberOfBlackCoins= 0
         self.players.sort(key=lambda x: x.score)
-
         self.assertEqual((True,self.players[-1].name),utility.checkResult(self.carrom))
     
     def test_checkResultFalseAferCoinExhaustion(self):
@@ -80,21 +77,7 @@ class testUtility(unittest.TestCase):
         self.coins.numberOfRedCoins= 1
         self.coins.numberOfBlackCoins= 3
         self.players.sort(key=lambda x: x.score)
-
         self.assertEqual((False,None),utility.checkResult(self.carrom))
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == "__main__":
-    unittest.main()
+#to run test without unittest option on cli
+'''if __name__ == "__main__":
+    unittest.main()'''

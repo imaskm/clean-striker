@@ -1,4 +1,3 @@
-
 import unittest
 from src.classes import Players
 
@@ -8,7 +7,6 @@ class testPlayer(unittest.TestCase):
         name = "test"
         obj_player=Players(name)
         self.assertIsInstance(obj_player,Players)
-
-
-if __name__ == "__main__":
-    unittest.main()
+#to run test without unittest option on cli
+'''if __name__ == "__main__":
+    unittest.main()'''

@@ -1,3 +1,4 @@
+# Singleton class for creating Carraom Coins
 class CarromCoins():
 
     def __new__(klaas,*args,**kwargs):
@@ -12,7 +13,7 @@ class CarromCoins():
         self.numberOfBlackCoins = numberOfBlackCoins
         self.numberOfRedCoins = numberOfRedCoins
         self.striker = 1
-
+#Class for creating players
 class Players():
 
     def __init__(self,name):
@@ -21,8 +22,9 @@ class Players():
         self.foul = 0
         self.none_strikes = 0
 
+#Singleton class for Carrom Game
 class CarromGame():
-
+    #List for all playing options
     GAME_OPTIONS = [ "Strike", "Multistrike", "Red Strike", "Striker Strike", "Defunct Coin", "None" ] 
 
     def __new__(klass,*args,**kwargs):
@@ -37,7 +39,7 @@ class CarromGame():
         self.coins = coins
         self.players = players
     
-
+    #Single strike black coins
     def strike(self,player):
 
         if( self.coins.numberOfBlackCoins < 1 ):
@@ -47,7 +49,7 @@ class CarromGame():
         self.coins.numberOfBlackCoins-=1
         self.players[player].none_strikes = 0
         return True
-
+    #Multi strike black coins
     def multiStrike(self,player):
         
         if( self.coins.numberOfBlackCoins < 2 ):
@@ -57,7 +59,7 @@ class CarromGame():
         self.coins.numberOfBlackCoins-=2
         self.players[player].none_strikes = 0
         return True
-
+    #Method for red coin strike
     def redStrike(self,player):
 
         if(self.coins.numberOfRedCoins < 1 ):
@@ -68,6 +70,7 @@ class CarromGame():
         self.players[player].none_strikes = 0
         return True
     
+    #Method for striker strike
     def strikerStrike(self,player):
         
         self.players[player].score-=1
@@ -76,6 +79,7 @@ class CarromGame():
         self.noneStrike(player)
         return True
 
+    #Method for defunct coins
     def defunct(self,player,coin_type):
 
         if( coin_type == "red"):
@@ -93,18 +97,23 @@ class CarromGame():
                 self.coins.numberOfBlackCoins-=1
         
         self.players[player].score-=2
-        self.foul(player)
-        self.noneStrike(player)
+
+        if(self.foul(player)):
+            self.players[player].score-=1
+
         return True
 
+    #method to keep track of all fouls
     def foul(self,player):
-        self.players[player].foul+=1
-
-        if( self.players[player].foul == 3 ):
-            self.players[player].foul = 0
-            self.players[player].score-=1
         
-    
+        if( self.players[player].foul == 2 ):
+            self.players[player].foul = 0
+            return True
+        else:
+            self.players[player].foul+=1
+            return False
+        
+    #Method for no strike
     def noneStrike(self,player):
 
         self.players[player].none_strikes+=1
@@ -112,14 +121,13 @@ class CarromGame():
         if(self.players[player].none_strikes == 3):
             self.players[player].none_strikes = 0
             self.players[player].score-=1
-            self.foul(player)
+            
+                       
+    #Methods to return all game options
+    def getGameOptions(self):
+        
+        return CarromGame.GAME_OPTIONS
 
-    def printGameOptions(self):
-
-        counter = 1
-
-        for option in self.GAME_OPTIONS:
-            print("{0}. {1}\n".format(counter,option) )
-            counter+=1 
+        
     
     

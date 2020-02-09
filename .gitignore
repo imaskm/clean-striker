@@ -1,4 +1,5 @@
 *.pyc
-__pycache__/
-cleans/
-.vscode/
+*/__pycache__/
+.vsco/
+.coverage
+.gitignore

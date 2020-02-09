@@ -1,6 +1,6 @@
 from classes import *
 
-
+#Initializing Carrom Game
 def initializeGame():
     numberOfBlackCoins = 9
     numberOfRedCoins = 1
@@ -10,6 +10,3 @@ def initializeGame():
     player2 = Players( input("Enter second player's name: ") or "noob2")
 
     return CarromGame(coins,[player1,player2])
-
-
-
