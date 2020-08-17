@@ -94,7 +94,27 @@ class testCarromGame(unittest.TestCase):
     
     def test_gameOptions(self):
 
-        self.assertEqual(self.carromgame.GAME_OPTIONS,self.carromgame.getGameOptions())        
+        self.assertEqual(self.carromgame.GAME_OPTIONS,self.carromgame.getGameOptions()) 
+
+    def test_superFoul(self):
+
+        expected_scores=[]
+        player = 0
+
+        for i in range(len(self.carromgame.players)):
+            if(i==player):
+                expected_scores.append(self.carromgame.players[i].score-2)
+            else:
+                expected_scores.append(self.carromgame.players[i].score+1)
+        self.carromgame.superFoul(player)
+
+        scores=[]
+
+        for player in self.carromgame.players:
+            scores.append(player.score)
+
+        self.assertEqual(expected_scores,scores)
+
 
 #to run test without unittest option on cli
 '''if __name__ == "__main__":

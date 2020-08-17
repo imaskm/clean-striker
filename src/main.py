@@ -67,6 +67,9 @@ def playGame(carrom):
                 elif( option == 6 ):
                     carrom.noneStrike(player)
                     break
+                elif(option == 7 ):
+                    carrom.superFoul(player)
+                    break
             
             status,winner = utility.checkResult(carrom)
             if( status ):

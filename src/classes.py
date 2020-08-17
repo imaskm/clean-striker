@@ -25,7 +25,7 @@ class Players():
 #Singleton class for Carrom Game
 class CarromGame():
     #List for all playing options
-    GAME_OPTIONS = [ "Strike", "Multistrike", "Red Strike", "Striker Strike", "Defunct Coin", "None" ] 
+    GAME_OPTIONS = [ "Strike", "Multistrike", "Red Strike", "Striker Strike", "Defunct Coin", "None", "SuperFoul" ] 
 
     def __new__(klass,*args,**kwargs):
 
@@ -121,6 +121,15 @@ class CarromGame():
         if(self.players[player].none_strikes == 3):
             self.players[player].none_strikes = 0
             self.players[player].score-=1
+    
+    #method for superFoul
+    def superFoul(self,player):
+
+        for i in range(len(self.players)):
+            if(player != i):
+                self.players[i].score+=1
+            else:
+                self.players[i].score-=2
             
                        
     #Methods to return all game options
